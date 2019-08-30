@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let playerScore = 0;
+        let computerScore = 0;
+
+        function computerPlay() {
+            number = Math.floor(Math.random() * 3 + 1)
+            switch (number) {
+                case (1):
+                    return "rock";
+                case (2):
+                    return "paper";
+                default:
+                    return "scissors";
+            }
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            let player = playerSelection.toLowerCase();
+            let pfirst = player.slice(0, 1);
+            let computer = computerSelection;
+            let cfirst = computer.slice(0, 1);
+
+            switch (pfirst) {
+                case ("p"):
+                    if (pfirst == cfirst) {
+                        return "You are both winners! " + player + " does not beat " + computer;
+                    } else {
+                        if (cfirst == "r") {
+                            playerScore++;
+                            return "You win! " + player + " beats " + computer;
+                        } else {
+                            computerScore++;
+                            return "You loose! " + computer + " beats " + player;
+                        }
+                    }
+                case ("r"):
+                    if (pfirst == cfirst) {
+                        return "You are both winners! " + player + " does not beat " + computer;
+                    } else if (pfirst < cfirst) {
+                        playerScore++;
+                        return "You win! " + player + " beats " + computer;
+                    } else {
+                        computerScore++;
+                        return "You loose! " + computer + " beats " + player;
+                    }
+                case ("s"):
+                    if (pfirst == cfirst) {
+                        return "You are both winners! " + player + " does not beat " + computer;
+                    } else if (cfirst == "r") {
+                        computerScore++;
+                        return "You loose! " + computer + " beats " + player;
+                    } else {
+                        playerScore++;
+                        return "You win! " + player + " beats " + computer;
+                    }
+            }
+        }
+        function game() {
+            for (i = 0; i < 5; i++) {
+                let playerSelection = prompt("Type your selection. (Rock,Paper,Scissors)");
+                let computerSelection = computerPlay();
+                console.log(playRound(playerSelection, computerSelection));
+            }
+            if (playerScore == computerScore) {
+                console.log("You are both winners! \nThe player scored: " + playerScore + " The computer scored: " +
+                    computerScore);
+            } else if (playerScore > computerScore) {
+                console.log("The player wins.\nThe player scored: " + playerScore + " The computer scored: " +
+                    computerScore);
+            } else {
+                console.log("The computer wins.\nThe player scored: " + playerScore + " The computer scored: " +
+                    computerScore);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
